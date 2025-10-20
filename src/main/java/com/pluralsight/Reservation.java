@@ -4,13 +4,10 @@ public class Reservation {
     private String roomType;
     private int numberOfNights;
     private boolean isWeekend;
-    private double price;
-
-    public Reservation(String roomType, boolean isWeekend, int numberOfNights, double price) {
+    public Reservation(String roomType, boolean isWeekend, int numberOfNights) {
         this.roomType = roomType;
         this.isWeekend = isWeekend;
         this.numberOfNights = numberOfNights;
-        this.price = price;
     }
 
     public String getRoomType() {
@@ -47,6 +44,10 @@ public class Reservation {
         }
     }
     public double getReservationTotal() {
-        price * numberOfNights = reservationtotal
+        double total = getPrice() * this.numberOfNights;
+        if (isWeekend){
+            total = total * 1.10;
+        }
+        return total;
     }
 }
