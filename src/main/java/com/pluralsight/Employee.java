@@ -7,6 +7,9 @@ public class Employee {
     private double payRate;
     private double hoursWorked;
 
+    private double REGULAR_HOURS = 40;
+    private double OVERTIME_PAYRATE = 1.15;
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -14,17 +17,25 @@ public class Employee {
     public double getTotalPay() {
         double totalPay = payRate * hoursWorked;
         return totalPay;
+        double regularPay = getRegularHours() * payRate;
+        double overtimePay = getOvertimeHours() * (payRate * OVERTIME_PAYRATE);
+        return regularPay + overtimePay;
     }
 
     public double getRegularHours() {
-        double regularHours = hoursWorked;
-        return regularHours;
+        if (hoursWorked <= REGULAR_HOURS) {
+            return hoursWorked;
+        } else {
+            return REGULAR_HOURS;
+        }
     }
 
     public double getOvertimeHours() {
-        if (hoursWorked > 40){
-            double overtimeHours = hoursWorked - getRegularHours();
+        if (hoursWorked > REGULAR_HOURS) {
+            double overtimeHours = hoursWorked - REGULAR_HOURS;
             return overtimeHours;
+        } else {
+            return 0;
         }
     }
 }
