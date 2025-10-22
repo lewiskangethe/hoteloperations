@@ -53,9 +53,10 @@ public class Room {
         } else {
             System.out.println("Room is available.");
         }
+        cleanRoom();
     }
 
-    public void cleanRoom() {
+    private void cleanRoom() {
         isDirty = false;
     }
 }
